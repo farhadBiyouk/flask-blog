@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+<h2>Register form</h2>
+
+{% include "common/register_error.html" %}
+    <form action="" method="post">
+        {{form.csrf_token}}
+        {{form.username.label(class="form-control-label")}}: {{form.username(class="form-control")}}
+        {{form.email.label(class="form-control-label")}}: {{form.email(class="form-control")}}
+        {{form.password.label(class="form-control-label")}}: {{form.password(class="form-control")}}
+        {{form.confirm_password.label(class="form-control-label")}}: {{form.confirm_password(class="form-control")}}<br>
+        <button class="btn btn-info" type="submit">register</button>
+    </form>
+{% endblock content %}

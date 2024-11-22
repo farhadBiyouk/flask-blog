@@ -8,7 +8,26 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="navbar-nav">
+            <a class="nav-link active" href="{{url_for('home')}}">Home</a>
+            <a class="nav-link active" href="{{url_for('register')}}">register</a>
+            <a class="nav-link active" href="{{url_for('login')}}">login</a>
+        </div>
+      </nav>
         <div class="jumbotron">
+        {% with messages=get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for cat, message in messages %}
+                <div class="alert alert-{{cat}} alert-dismissible fade show" role="alert">
+                    <strong>{{cat}}: </strong> {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
             {% block content %}{% endblock %}
         </div>
     

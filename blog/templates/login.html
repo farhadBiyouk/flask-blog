@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<h2>Login form</h2>
+    <form action="" method="get">
+        {{form.csrf_token}}
+        {{form.username.label(class="form-control-label")}}: {{form.username(class="form-control")}}
+        {{form.password.label(class="form-control-label")}}: {{form.password(class="form-control")}}
+        {{form.remember_me.label(class="form-control-label")}}: {{form.remember_me(class="form-control")}}<br>
+        <button class="btn btn-info" type="submit">log in</button>
+    </form>
+{% endblock content %}
