@@ -2,13 +2,28 @@ from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, current_user, logout_user, login_required
 
 from blog import app, bcrypt, db
-from blog.forms import RegistrationForm, LoginForm
+from blog.forms import RegistrationForm, LoginForm, UpdateProfileForm
 from blog.models import User
 
 
 @app.route('/')
 def home():
     return render_template('home.html')
+
+
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    form = UpdateProfileForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('updated profile successfully', 'success')
+        return redirect(url_for('profile'))
+    form.username.data = current_user.username
+    form.email.data = current_user.email
+    return render_template('profile.html', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])

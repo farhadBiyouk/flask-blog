@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}profile{% endblock title %}
+
+{% block content %}
+{% include 'common/register_error.html' %}
+<h2>{{current_user.username}}</h2><br>
+<p>{{current_user.email}}</p><br><hr>
+<form action="" method="post">
+{{form.csrf_token}}
+{{form.username.label}} {{form.username}}<br>
+{{form.email.label}} {{form.email}}<br>
+<button type="submit"  class="btn btn-primary">Update</button>
+
+</form>
+{% endblock content %}
