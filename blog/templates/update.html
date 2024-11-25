@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}update{% endblock title %}
+
+{% block content %}
+
+<h1>Update form</h1>
+<form action="" method="post">
+{{form.csrf_token}}
+{{form.title.label(class='form-control-label')}} {{form.title(class='form-control')}}<br>
+{{form.content.label(class='form-control-label')}} {{form.content(class='form-control')}}<br>
+<button type="submit"  class="btn btn-primary">Update</button>
+
+</form>
+{% endblock content %}

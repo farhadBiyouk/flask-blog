@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField
+from wtforms import StringField, BooleanField, PasswordField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 from blog.models import User
@@ -38,3 +38,8 @@ class UpdateProfileForm(FlaskForm):
                            DataRequired(), Length(min=4, max=20)])
     email = StringField('email', validators=[DataRequired(), Email(
         message='Please enter correct email address')])
+    
+
+class PostForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired(), Length(min=3, max=70)])
+    content = TextAreaField('Content', validators=[DataRequired()])

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}detail{% endblock title %}
+
+{% block content %}
+<h1>{{post.title}}</h1>
+<p>{{post.author.username}} - {{post.date.strftime('%Y-%m-%d')}}</p><hr>
+<p>{{post.content}}</p>
+<br><br>
+
+{% if post.author == current_user %}
+  <a href="{{url_for('delete_post', post_id=post.id)}}" class="btn btn-danger">delete</a>
+  <a href="{{url_for('update_post', post_id=post.id)}}" class="btn btn-info">update</a>
+{% endif %}
+{% endblock content %}
